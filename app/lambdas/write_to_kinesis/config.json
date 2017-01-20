@@ -1,0 +1,6 @@
+{
+    "kinesis":{
+        "StreamName":"api-calls",
+        "PartitionKey":"1"
+    }
+}
