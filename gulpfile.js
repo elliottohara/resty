@@ -12,7 +12,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('js', function() {
-  return gulp.src('app/lambdas/write_to_kinesis/**.*')
+  return gulp.src('src/**.*')
     .pipe(gulp.dest('dist/'));
 });
 
@@ -29,7 +29,7 @@ gulp.task('zip', function() {
 });
 
 gulp.task('upload', function(callback) {
-  awsLambda.deploy('./dist.zip', require("./app/lambdas/write_to_kinesis/lambda-config"), callback);
+  awsLambda.deploy('./dist.zip', require("./deployment-config").write_to_kinesis, callback);
 });
 
 gulp.task('deploy', function(callback) {

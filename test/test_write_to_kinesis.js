@@ -7,8 +7,8 @@ const LambdaTester = require('lambda-tester');
 const sinon = require('sinon');
 const AWS = require('aws-sdk-mock');
 
-const myHandler =  requireLib('/app/lambdas/write_to_kinesis/index').handler;
-const config = requireLib('./app/lambdas/write_to_kinesis/config');
+const myHandler =  requireLib('src/lambdas').write_to_kinesis;
+const config = requireLib('src/config');
 const testEvent = require('./testEvent');
 
 
