@@ -16,7 +16,8 @@ event based triggers.
 
 I don't have everything automated yet, so there are still a few manual steps you'll need to do through the AWS console.
 
-**Setting up AWS permissions and Kenisis stream**
+**Setting up AWS permissions and Kenisis stream.**
+
 First, you'll need to create Kinesis stream. Whatever you name it, the src/config.json needs to match it. 
 The current code uses "api-calls". Next, create a IAM role for your lambda that has the correct access to the Kenisis stream and 
 write access for logging. You can copy the policy from the kesines_logger_policy.json file in the repo but update the arn to match
