@@ -16,14 +16,14 @@ event based triggers.
 
 I don't have everything automated yet, so there are still a few manual steps you'll need to do through the AWS console.
 
-**Setting up AWS permissions and Kenisis stream.**
+###Setting up AWS permissions and Kenisis stream###
 
 First, you'll need to create Kinesis stream. Whatever you name it, the src/config.json needs to match it. 
 The current code uses "api-calls". Next, create a IAM role for your lambda that has the correct access to the Kenisis stream and 
 write access for logging. You can copy the policy from the kesines_logger_policy.json file in the repo but update the arn to match
 the arn for the Kenisis stream you just made. 
 
-**Setting up deployment**
+###Setting up deployment###
 * Make sure you have the [aws cli](https://aws.amazon.com/cli/) installed 
 * Update deployment-config.js to match your AWS credentials. *Note that the profile is only needed if you've got multiple profiles set up with your aws config.*
 * run `npm run deploy`
