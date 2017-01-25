@@ -6,7 +6,7 @@ const config = require('./config');
 
 /// kenisis logger. Will log events to the kenisis stream
 exports.write_to_kinesis = (event, context, callback) => {
-    console.log('Received event', JSON.stringify(event, null, 2));
+    //console.log('Received event', JSON.stringify(event, null, 2));
     const kenisis = new AWS.Kinesis();
     const params = config.kinesis;
     params.Data =  JSON.stringify(event);
@@ -14,16 +14,30 @@ exports.write_to_kinesis = (event, context, callback) => {
         let response;
         
         if(err){
-            console.log('Kinesis error: ', JSON.stringify(err, null, 2));
+            //console.log('Kinesis error: ', JSON.stringify(err, null, 2));
             response = lambdaProxy.response(500, {"Content-Type":"application/json"}, err);
             callback(err, null);
             return;
             
         }else{
-            console.log('Kinesis response:', JSON.stringify(data, null, 2));
+            //console.log('Kinesis response:', JSON.stringify(data, null, 2));
             response = lambdaProxy.response(200, {"Content-Type":"application/json"},data);
             callback(null, response);
         }
+    });
+};
+
+exports.dynamoPut = (event, context, callback) => {
+    //console.log('Received event', JSON.stringify(event, null, 2));
+    const dynamoDb = new AWS.DynamoDB.DocumentClient;
+    //get the table name
+    
+    let TableName = event.path.substr(1);
+    let params = {
+        TableName
+    };
+    dynamoDb.put(params, (err, data)=>{
+        callback(null, data);
     });
 };
 

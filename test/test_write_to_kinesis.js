@@ -25,7 +25,7 @@ const putRecordSpy = sinon.spy(putRecordsMock);
 AWS.mock('Kinesis','putRecord', putRecordSpy);
 
 
-describe('the handler', function() {
+describe('the write to kinesis handler', function() {
 
     it( 'will return a success result', function() {
         return LambdaTester( myHandler )
@@ -72,7 +72,7 @@ describe('the handler', function() {
         };
         return LambdaTester(myHandler).event(testEvent)
             .expectResult( result => {
-                console.log(JSON.stringify(result));
+                //console.log(JSON.stringify(result));
                 result.statusCode.should.equal(500);
             });
 
